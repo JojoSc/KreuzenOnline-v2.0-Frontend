@@ -16,4 +16,4 @@ deploy-dev:
   script:
     - npm i
     - npm run build
-    - cp -a ./build/. /home/defi/frontend
+    - cp -a ./build /home/defi/frontend
