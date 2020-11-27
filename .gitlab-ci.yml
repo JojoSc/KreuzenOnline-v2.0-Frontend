@@ -1,0 +1,19 @@
+build-job:
+  stage: build
+  script:
+    - echo "Building..."
+    - /home/defiv2/bin/nodejs/bin/npm i
+    - /home/defiv2/bin/nodejs/bin/npm run build
+
+test-job:
+  stage: test
+  script:
+    - echo "Testing..."
+    - echo "TODO..."
+
+deploy-dev:
+  stage: deploy
+  script:
+    - /home/defiv2/bin/nodejs/bin/npm i
+    - /home/defiv2/bin/nodejs/bin/npm run build
+    - cp -a ./build/. /home/defiv2/frontend
