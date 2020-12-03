@@ -10,7 +10,7 @@ function Home() {
   return (
     <Container>
       <Alert variant="info">
-        Hello World!
+        Hallo funktioniert es jetzt?
       </Alert>
     </Container>
   );
