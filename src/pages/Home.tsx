@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import {
   Button, Form, Col, Row, Navbar, Nav,
 } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import img from '../Grafiken/KreuzenLogo.png';
 
 document.getElementsByTagName('body')[0].style.backgroundColor = '#1d1d1d';
@@ -24,6 +25,28 @@ const SimpleContainer = styled.div`
     margin: 0 auto;
 `;
 
+const ButtonModified = styled(Button)`
+    border-radius: 3px;
+    background: #a1f9d2;
+    color: black;
+    border: 2px white;
+`;
+
+const SimpleButton = styled(Button)`
+    display: inline-block;
+    border-radius: 3px;
+    width: 15rem;
+    background: transparent;
+    color: white;
+    border: 1px solid white;
+`;
+
+const MintHeader = styled(Navbar)`
+    color: #000000;
+    background: #a1f9d2;
+    border: 1px solid white;
+`;
+
 export default function HomeLogin() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -36,12 +59,16 @@ export default function HomeLogin() {
     event.preventDefault();
   }
 
+  function login() {
+
+  }
+
   return (
     <SimpleContainer>
-      <Navbar bg="light" expand="lg">
-        <Navbar.Brand href="#home">Kreuzen</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
+      <MintHeader>
+        <MintHeader.Brand href="#home">Kreuzen</MintHeader.Brand>
+        <MintHeader.Toggle aria-controls="basic-navbar-nav" />
+        <MintHeader.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             <Nav.Link href="#home">DEFI</Nav.Link>
             <Nav.Link href="#link">Files</Nav.Link>
@@ -49,8 +76,8 @@ export default function HomeLogin() {
             <Nav.Link href="#link">Das Komm</Nav.Link>
             <Nav.Link href="#link">Post</Nav.Link>
           </Nav>
-        </Navbar.Collapse>
-      </Navbar>
+        </MintHeader.Collapse>
+      </MintHeader>
       <Row>
         <Col>Test</Col>
         <Col>
@@ -73,7 +100,6 @@ export default function HomeLogin() {
                 <div className="Login">
                   <Form onSubmit={handleSubmit}>
                     <Form.Group controlId="email">
-                      {/* <Form.Label>Email</Form.Label> */}
                       <Form.Control
                         autoFocus
                         type="email"
@@ -90,29 +116,35 @@ export default function HomeLogin() {
                         placeholder="Passwort"
                       />
                     </Form.Group>
-                    <Button block size="lg" type="submit" disabled={!validateForm()} variant="success">
+                    <ButtonModified block size="lg" type="submit" onClick={login}>
                       Login
-                    </Button>
+                    </ButtonModified>
                   </Form>
                 </div>
                 <div style={{ display: 'flex' }}>
-                  <Button
-                    size="sm"
-                    type="button"
-                    variant="link"
-                    style={{ marginLeft: 'auto' }}
-                  >
-                    Passwort vergessen?
-                  </Button>
+                  <Link to="/passwordreset">
+                    <Button
+                      size="sm"
+                      type="button"
+                      variant="link"
+                      style={{ marginRight: 'auto', color: '#a1f9d2', display: 'flex' }}
+                    >
+                      Passwort vergessen?
+                    </Button>
+                  </Link>
                 </div>
                 <Container>
                   <div className="row">
-                    <Button size="sm" type="button" variant="link">
-                      Registrieren
-                    </Button>
-                    <Button size="sm" type="button" variant="link">
-                      Account freischalten
-                    </Button>
+                    <Link to="/register">
+                      <SimpleButton size="sm" type="button" variant="link">
+                        Registrieren
+                      </SimpleButton>
+                    </Link>
+                    <Link to="/unlock">
+                      <SimpleButton size="sm" type="button" variant="link">
+                        Account freischalten
+                      </SimpleButton>
+                    </Link>
                   </div>
                 </Container>
               </Container>
