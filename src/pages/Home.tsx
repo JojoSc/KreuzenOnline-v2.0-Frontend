@@ -1,16 +1,21 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Button, Form } from 'react-bootstrap';
-
+import {
+  Button, Form, Col, Row,
+} from 'react-bootstrap';
 import img from './KreuzenLogo.png';
+
+document.getElementsByTagName('body')[0].style.backgroundColor = '#1d1d1d';
 
 const Container = styled.div`
     padding: 5%;
     text-align="center";
     align="center";
+    text-align="center";
     position: relative;
-    width: 50%; 
+    width: 100%; 
     margin: 0 auto;
+    horizontal-align: middle;
 `;
 
 const ContainerN = styled.div`
@@ -33,38 +38,53 @@ export default function HomeLogin() {
   }
 
   return (
-    <ContainerN>
-      <img src={img} />
-      <Container>
-        <h1>Kreuzen</h1>
-        <h2>Die Online-Lernplattform für Medizin und Zahnmedizin</h2>
+    <Row>
+      <Col>
         <Container>
-          <div className="Login">
-            <Form onSubmit={handleSubmit}>
-              <Form.Group controlId="email">
-                <Form.Label>Email</Form.Label>
-                <Form.Control
-                  autoFocus
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </Form.Group>
-              <Form.Group controlId="password">
-                <Form.Label>Passwort</Form.Label>
-                <Form.Control
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </Form.Group>
-              <Button color="#acf6c8" block size="lg" type="submit" disabled={!validateForm()}>
-                Login
-              </Button>
-            </Form>
-          </div>
+          <img src={img} />
         </Container>
-      </Container>
-    </ContainerN>
+      </Col>
+      <Col>
+        <div style={
+          {
+            display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh',
+          }
+        }
+        >
+          <Container>
+            <span style={{ color: 'white' }}>
+              <h1>Kreuzen</h1>
+              <h3>Die Online-Lernplattform für Medizin und Zahnmedizin</h3>
+            </span>
+            <Container>
+              <div className="Login">
+                <Form onSubmit={handleSubmit}>
+                  <Form.Group controlId="email">
+                    {/* <Form.Label>Email</Form.Label> */}
+                    <Form.Control
+                      autoFocus
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                  </Form.Group>
+                  <Form.Group controlId="password">
+                    <Form.Control
+                      type="password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
+                  </Form.Group>
+                  <Button block size="lg" type="submit" disabled={!validateForm()} variant="success">
+                    Login
+                  </Button>
+                </Form>
+              </div>
+            </Container>
+          </Container>
+        </div>
+      </Col>
+      <Col>test</Col>
+    </Row>
   );
 }
